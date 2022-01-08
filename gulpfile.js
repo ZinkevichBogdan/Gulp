@@ -72,8 +72,11 @@ function watch() {
           baseDir: "./dist"
       }
     })
+   gulp.watch(paths.html.dest).on('change', browsersync.reload)
+   gulp.watch(paths.html.src, html)
    gulp.watch(paths.scss.src, scss)
    gulp.watch(paths.scripts.src, scripts)
+   gulp.watch(paths.images.src, img)
 }
 
 // Задача которая выполняется по команде gulp
