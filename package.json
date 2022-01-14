@@ -9,10 +9,15 @@
   "author": "ZinkevichBogdan",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "babel": "^6.23.0",
     "browser-sync": "^2.27.7",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
     "sass": "^1.47.0"
   }
 }

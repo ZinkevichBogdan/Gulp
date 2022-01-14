@@ -5,6 +5,9 @@ const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const del = require('del');
 const browsersync = require('browser-sync').create()
+const babel = require('gulp-babel')
+const uglify = require('gulp-uglify')
+const concat = require('gulp-concat')
 
 // Пути исходных файлов src
 
@@ -43,9 +46,23 @@ function html() {
 
 // Обработка препроцессоров стилей
 function scss() {
-   return gulp.src(paths.scss.src)
+   return gulp.src(paths.scss.src,{
+      sourcemapas: true
+      })
       .pipe(sass())
+      .pipe(concat('style.css'))
       .pipe(gulp.dest(paths.scss.dest))
+      .pipe(browsersync.stream())
+}
+
+function scripts() {
+   return gulp.src(paths.scripts.src,{
+         sourcemapas: true
+         })
+         .pipe(babel())
+         .pipe(uglify())
+         .pipe(concat('script.js'))
+      .pipe(gulp.dest(paths.scripts.dest))
       .pipe(browsersync.stream())
 }
 
@@ -54,15 +71,6 @@ function scss() {
 function img() {
    return gulp.src(paths.images.src)
       .pipe(gulp.dest(paths.images.dest))
-}
-
-
-
-
-function scripts() {
-   return gulp.src(paths.scripts.src,)
-      .pipe(gulp.dest(paths.scripts.dest))
-      .pipe(browsersync.stream())
 }
 
 // Отслеживание изменений и запуск  сервера
